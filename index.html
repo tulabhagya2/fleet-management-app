@@ -9,9 +9,24 @@
     <h1>Login Page</h1>
     <div id="formContainer">
         <label>Email:</label>
-        <input type="Email" id="email" placeholder="Enter Your Email">
-         <input type="password" id="password" placeholder="Enter Your password">
-         <button>Login</button>
+        <input type="Email" id="email" placeholder="Enter Your Email"><br><br>
+        <label>password</label>
+         <input type="password" id="password" placeholder="Enter Your password"><br><br>
+         <button onclick="gotoAdmin()">Login</button>
     </div>
+    <script>
+        function gotoAdmin(){
+            let Email=document.getElementById("email").value;
+            let password=document.getElementById("password").value;
+    if(Email=="admin@gmail.com" && password=="admin1234"){
+        alert("login success");
+        window.location.href="admin.html";
+        
+    }
+    else{
+        alert("you enter wrong email and password please enter correct one");
+    }
+}
+    </script>
 </body>
 </html>
