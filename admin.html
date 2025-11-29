@@ -1,116 +1,178 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <style>
-        body{
-            font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+        body {
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 
         }
-        .feetContainer{
-            display:grid;
-            grid-template-columns: repeat(3,1fr);
-            gap:30px;
+
+        .feetContainer {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            width:100%;
+            padding:20px;
         }
-        .card{
-            gap:10px;
+
+        .card {
+            gap: 10px;
             text-align: center;
             border-radius: 20px;
             justify-content: center;
         }
+
+        .navbar {
+            margin: top;
+            display: flex;
+            align-self: auto;
+        }
+
+        .deleteBtn {
+            background-color: red;
+        }
     </style>
 </head>
+
 <body>
-  
+
     <sidebar>
         <input type="text" placeholder="enter the registration number" id="regno"><br><br>
         <select id="category">
             <option value="">select category</option>
             <option value="Auto">Auto</option>
-             <option value="Car">Car</option>
-              <option value="Truck">Truck</option>
-               <option value="Bus">Bus</option>
+            <option value="Car">Car</option>
+            <option value="Truck">Truck</option>
+            <option value="Bus">Bus</option>
         </select><br><br>
         <input type="text" name="name" id="drivername" placeholder="Enter the driver name"><br><br>
         <select id="availability">
-            <option></option>
+            <option>select one</option>
             <option>Available
             </option>
             <option>Unavailable</option>
         </select><br><br>
         <button onclick="feetButton()">Feet Button</button>
     </sidebar>
+    <header>
+        <nav id="navBar">
+            <select id="categoryFilter">
+                <option value="All">All</option>
+                <option value="Auto">Auto</option>
+                <option value="Car">Car</option>
+                <option value="Truck">Truck</option>
+                <option value="Bus">Bus</option>
+
+            </select>
+            <select id="availabityFilter">
+                <option value="All">All</option>
+                <option value="Available">Available</option>
+                <option value="Unavailble">Unavailable</option>
+            </select>
+            <button onclick="filterButton()">Filter Button</button>
+        </nav>
+    </header>
     <div id="feetContainer"></div>
     <script>
-        const imageUrl="https://coding-platform.s3.amazonaws.com/dev/lms/tickets/5e80fcb6-3f8e-480c-945b-30a5359eb40e/JNmYjkVr3WOjsrbu.png"
-        let vehicles=[];
-        function feetButton(){
-            let regno=document.getElementById("regno").value.trim();
-            let category=document.getElementById("category").value.trim();
-            let drivername=document.getElementById("drivername").value.trim();
-            let availability=document.getElementById("availability").value;
-            if(!regno||!category||!drivername||!availability){
+        const imageUrl = "https://coding-platform.s3.amazonaws.com/dev/lms/tickets/5e80fcb6-3f8e-480c-945b-30a5359eb40e/JNmYjkVr3WOjsrbu.png"
+        let vehicles = [];
+        function feetButton() {
+            let regno = document.getElementById("regno").value.trim();
+            let category = document.getElementById("category").value.trim();
+            let drivername = document.getElementById("drivername").value.trim();
+            let availability = document.getElementById("availability").value;
+            if (!regno || !category || !drivername || !availability) {
                 alert("please enter all details");
                 return;
             }
 
-            let vechicle={
+            let vechicle = {
                 regno,
                 category,
                 drivername,
                 availability,
-                image:imageUrl
+                image: imageUrl
 
             }
             vechicles.push(vechicle);
             renderVechicles(vechicles);
-            document.getElementById("regno").value="";
-            document.getElementById("regno").value="";
-            document.getElementById("regno").value="";
-            document.getElementById("regno").value="";
+            document.getElementById("regno").value = "";
+            document.getElementById("regno").value = "";
+            document.getElementById("regno").value = "";
+            document.getElementById("regno").value = "";
 
-            
+
 
 
 
 
 
         }
-        function renderVechicles(vechiclesList){
-            let container=document.getElementById("feetContainer");
-            container.innerHTML="";
-            vechicleList.forEach((vechicle,index )=> {
-                let card=document.createElement("div");
-                card.className="card";
-                let img=document.createElement("img")
-                img.src="vechicle.image"
-                let regno=document.createElement("h3");
-                regno.textContent=vechicle.regno;
-                let category=document.createElement("p");
-                category.textContent=vechicle.category;
-                let drivername=document.createElement("h3");
-                drivername.textContent=vechicle.drivername;
-                let availability=document.createElement("p");
-                availability.textContent=availability.drivername;
+        function renderVechicles(vechiclesList) {
+            let container = document.getElementById("feetContainer");
+            container.innerHTML = "";
+            vechicleList.forEach((vechicle, index) => {
+                let card = document.createElement("div");
+                card.className = "card";
+                let img = document.createElement("img")
+                img.src = "vechicle.image"
+                let regno = document.createElement("h3");
+                regno.textContent = vechicle.regno;
+                let category = document.createElement("p");
+                category.textContent = vechicle.category;
+                let drivername = document.createElement("h3");
+                drivername.textContent = vechicle.drivername;
+                let availability = document.createElement("p");
+                availability.textContent = availability.drivername;
+                let updateDriver = document.createElement("button");
+                updateDriver.className = "updateDriver";
+                updateDriver.textContent = "Update Driver";
+                let ChangeAvailability = document.createElement("button");
+                ChangeAvailability.className = "changeAvailability";
+                ChangeAvailability.textContent = "changeAvailability";
 
+                let deleteBtn = document.createElement("button");
+                deleteBtn.className = "deleteBtn";
+                deleteBtn.textContent = "Delete Vechicle";
+                
 
-
-
-
-                let deleteBtn=document.createElement("button");
-                deleteBtn.className="deleteBtn";
-                deleteBtn.addEventListener("click",function()=>{
+                deleteBtn.addEventListener("click", function () {
                     deleteVechicle(index);
                 });
-                
+                updateDriver.addEventListener("click", function () {
+                    updateDriver(index);
+                });
+                ChangeAvailability.addEventListener("click", function () {
+                    ChangeAvailability(index);
+
+                });
+                card.appendChild("img");
+                card.appendChild("regno");
+                card.appendChild("category");
+                card.appendChild("drivername");
+                card.appendChild("availability");
+                card.appendChild("deleteBtn");
+                card.appendChild("updateDriver");
+                card.appendChild("changeAvailabilty");
+                container.appendChild("card");
 
 
-                
+
             });
+
+
+        }
+        function deleteVechicle(index) {
+            vechicles.splice(index, 1);
+            renderVechicles(vechicles);
+
 
         }
     </script>
 </body>
+
 </html>
