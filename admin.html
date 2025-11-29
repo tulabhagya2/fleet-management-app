@@ -183,13 +183,24 @@
 
         }
         function categoryFilters(){
-            let container=document.getElementById("category");
-            if(container==="All"){
+            let category=document.getElementById("category");
+            if(category==="All"){
                 renderVechicles(vechicles);
                 return;
 
             }
-            let filtered=vechicles.filter(vechicle=>vechicle.category==)
+            let filtered=vechicles.filter((vechicle=>vechicle.category==="category"));
+            renderVechicles(filtered);
+        }
+        function availabilityFilters(){
+            let availability=document.getElementById("availability");
+            if(availability==="All"){
+                renderVechicles(vechicles);
+                return;
+
+            }
+            let filteredone=vechicles.filter((vechicle=>vechicle.availability==="availability"));
+            renderVechicles(filteredone);
         }
     </script>
 </body>
