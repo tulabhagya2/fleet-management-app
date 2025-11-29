@@ -39,8 +39,8 @@
 </head>
 
 <body>
-
-    <sidebar>
+<div>
+    <sidebar id="sidebar">
         <input type="text" placeholder="enter the registration number" id="regno"><br><br>
         <select id="category">
             <option value="">select category</option>
@@ -58,6 +58,7 @@
         </select><br><br>
         <button onclick="feetButton()">Feet Button</button>
     </sidebar>
+    </div>
     <header>
         <nav id="navBar">
             <select id="categoryFilter">
@@ -76,6 +77,20 @@
             <button onclick="filterButton()">Filter Button</button>
         </nav>
     </header>
+    <!-- filter-->
+     <select id="categoryFilter" onchange="categoryFilters()">
+                <option value="All">All</option>
+                <option value="Auto">Auto</option>
+                <option value="Car">Car</option>
+                <option value="Truck">Truck</option>
+                <option value="Bus">Bus</option>
+
+            </select>
+            <select id="availabityFilter" onchange="availabilityFilters()">
+                <option value="All">All</option>
+                <option value="Available">Available</option>
+                <option value="Unavailble">Unavailable</option>
+            </select>
     <div id="feetContainer"></div>
     <script>
         const imageUrl = "https://coding-platform.s3.amazonaws.com/dev/lms/tickets/5e80fcb6-3f8e-480c-945b-30a5359eb40e/JNmYjkVr3WOjsrbu.png"
@@ -103,12 +118,7 @@
             document.getElementById("regno").value = "";
             document.getElementById("regno").value = "";
             document.getElementById("regno").value = "";
-            document.getElementById("regno").value = "";
-
-
-
-
-
+            document.getElementById("regno").value = ""
 
 
         }
@@ -171,6 +181,15 @@
             renderVechicles(vechicles);
 
 
+        }
+        function categoryFilters(){
+            let container=document.getElementById("category");
+            if(container==="All"){
+                renderVechicles(vechicles);
+                return;
+
+            }
+            let filtered=vechicles.filter(vechicle=>vechicle.category==)
         }
     </script>
 </body>
