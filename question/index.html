@@ -4,13 +4,25 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+        body{
+            background-color:whitesmoke;
+        }
+        h1{
+            text-align: left;
+        }
+        .formContainer{
+           margin:auto;
+           display:block;
+        }
+    </style>
 </head>
 <body>
     <h1>Login Page</h1>
     <div id="formContainer">
-        <label>Email:</label>
+
         <input type="Email" id="email" placeholder="Enter Your Email"><br><br>
-        <label>password</label>
+        
          <input type="password" id="password" placeholder="Enter Your password"><br><br>
          <button onclick="gotoAdmin()">Login</button>
     </div>
