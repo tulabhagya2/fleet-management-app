@@ -6,7 +6,7 @@
     <title>Document</title>
 </head>
 <body>
-    <h1>admin page</h1>
+  
     <sidebar>
         <input type="text" placeholder="enter the registration number" id="regno"><br><br>
         <select id="category">
@@ -25,16 +25,57 @@
     </sidebar>
     <div id="feetContainer"></div>
     <script>
+        const imageUrl="https://coding-platform.s3.amazonaws.com/dev/lms/tickets/5e80fcb6-3f8e-480c-945b-30a5359eb40e/JNmYjkVr3WOjsrbu.png"
+        let vehicles=[];
         function feetButton(){
-            let regno=document.getElementById("regno").value;
-            let category=document.getElementById("category").value;
-            let drivername=document.getElementById("drivername").value;
+            let regno=document.getElementById("regno").value.trim();
+            let category=document.getElementById("category").value.trim();
+            let drivername=document.getElementById("drivername").value.trim();
             let availability=document.getElementById("availability").value;
+            
+
+            let vechicle={
+                regno,
+                category,
+                drivername,
+                availability,
+                image:imageUrl
+
+            }
+            vechicles.push(vechicle);
+            renderVechicles(vechicles);
+            document.getElementById("regno").value="";
+            document.getElementById("regno").value="";
+            document.getElementById("regno").value="";
+            document.getElementById("regno").value="";
+
             
 
 
 
 
+
+        }
+        function renderVechicles(vechiclesList){
+            let container=document.getElementById("feetContainer");
+            container.innerHTML="";
+            vechicle.forEach((vechicle,index )=> {
+                let card=document.createElement("div");
+                card.className="card";
+                let img=document.createElement("img")
+                img.src="vechicle.image"
+                let regno=document.createElement("h3");
+                regno.textContent=vechicle.regno;
+                let category=document.createElement("p");
+                category.textContent=vechicle.category;
+                let drivername=document.createElement("h3");
+                drivername.textContent=vechicle.drivername;
+                let availability=document.createElement("p");
+                availability.textContent=availability.drivername;
+
+
+                
+            });
 
         }
     </script>
