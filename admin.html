@@ -4,12 +4,30 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+        body{
+            font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+
+        }
+        .feetContainer{
+            display:grid;
+            grid-template-columns: repeat(3,1fr);
+            gap:30px;
+        }
+        .card{
+            gap:10px;
+            text-align: center;
+            border-radius: 20px;
+            justify-content: center;
+        }
+    </style>
 </head>
 <body>
   
     <sidebar>
         <input type="text" placeholder="enter the registration number" id="regno"><br><br>
         <select id="category">
+            <option value="">select category</option>
             <option value="Auto">Auto</option>
              <option value="Car">Car</option>
               <option value="Truck">Truck</option>
@@ -17,6 +35,7 @@
         </select><br><br>
         <input type="text" name="name" id="drivername" placeholder="Enter the driver name"><br><br>
         <select id="availability">
+            <option></option>
             <option>Available
             </option>
             <option>Unavailable</option>
@@ -32,7 +51,10 @@
             let category=document.getElementById("category").value.trim();
             let drivername=document.getElementById("drivername").value.trim();
             let availability=document.getElementById("availability").value;
-            
+            if(!regno||!category||!drivername||!availability){
+                alert("please enter all details");
+                return;
+            }
 
             let vechicle={
                 regno,
@@ -59,7 +81,7 @@
         function renderVechicles(vechiclesList){
             let container=document.getElementById("feetContainer");
             container.innerHTML="";
-            vechicle.forEach((vechicle,index )=> {
+            vechicleList.forEach((vechicle,index )=> {
                 let card=document.createElement("div");
                 card.className="card";
                 let img=document.createElement("img")
@@ -72,6 +94,17 @@
                 drivername.textContent=vechicle.drivername;
                 let availability=document.createElement("p");
                 availability.textContent=availability.drivername;
+
+
+
+
+
+                let deleteBtn=document.createElement("button");
+                deleteBtn.className="deleteBtn";
+                deleteBtn.addEventListener("click",function()=>{
+                    deleteVechicle(index);
+                });
+                
 
 
                 
